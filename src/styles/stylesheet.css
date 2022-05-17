@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+html, body {
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background-image {
+    background: url("../../images/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    transform: scale(1.1);
+    filter: blur(10px) brightness(0.75);
+
+}
+
+.VolcanoApp {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+nav {
+    display: flex;
+    height: 120px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.57) 22%, rgba(0,0,0,0) 72%, rgba(255,255,255,0) 100%);
+}
+
+nav ul {
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: 25%;
+    margin-top: 30px;
+}
+
+nav ul li {
+    margin-left: 2rem;
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: bold;
+    transition: ease-in-out 0.25s;
+}
+
+nav ul li a:hover {
+    color: tomato;
+}
+
+/* Logout */
+
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 350px);
+}
+
+
+.hero .hero__title {
+    font-size: 45px;
+}
+
+.hero .hero__subtitle {
+    font-size: 20px;
+    padding-bottom: 50px;
+}
+
+.hero__content {
+    text-align: center;
+}
+
+.hero a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    padding: 12px;
+    transition: ease-in-out 0.25s;
+}
+
+.hero a:hover {
+    background-color: tomato;
+}
+
+
+
+/* Volcanoes List stuff */
+
+.filter-button {
+    background: none;
+    padding: 5px 15px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: ease-in-out 0.25s;
+}
+
+.filter-button:hover {
+    color: tomato;
+}
+
+
+/* Form */
+
+.login__panel, .register__panel {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 350px);
+
+}
+
+.form__window {
+    display: flex;
+    /* margin-left: 20%;
+    margin-right: 20%; */
+    background-color: rgba(0,0,0,0.4);
+    border: 3px solid white;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 400px;
+}
+
+.form__panel {
+    margin: 20px;
+    width: 400px;
+}
+
+.email__field, .password__field {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.email__field > input, .password__field > input {
+    width: 100%;
+    height: 20px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+}
+
+.form__panel button {
+    width: 200px;
+    background: rgba(0,0,0,0);
+    border: 2px solid white;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: ease-in-out 0.25s;
+    cursor: pointer;
+}
+
+.form__panel button:hover {
+    background: tomato; 
+}
+
+.form__panel button:active {
+    border: 2px solid tomato;
+    transition: 0s;
+}
+
+#error {
+    color: orangered;
+    margin-left: 20px;
+}
+
+input {
+    outline-style: none;
+    border: 4px solid white;
+
+}
+
+input:active, input:focus {
+    border-bottom: 4px solid tomato;
+}
+
+/* Volcano List */
+.volcanoes__list__filter {
+    padding-right: 20px;
+}
+
+.volcanoes__list__container {
+    display: flex;
+    justify-content: center;
+}
+
+.volcanoes__list__data {
+    width: 600px;
+}
+
+.volcanoes__list__filter > *:not(h2) {
+    margin-top: 20px;
+    
+}
+
+.country__sort > div, .range__sort > div {
+    color: black;
+}
+
+
+/* Volcano */
+.volcano__panel {
+    display: flex;
+    justify-content: space-around;
+}
+
+.volcano__title {
+    text-shadow: 2px;
+}
+
+
+.volcano__details > ul > li {
+    margin-bottom: 0.5rem;
+}
+
+.volcano__details > ul > li > span {
+    font-weight: bold;
+    padding-right: 0.4rem;
+}
