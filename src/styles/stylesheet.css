@@ -100,6 +100,11 @@ nav ul li a:hover {
     background-color: tomato;
 }
 
+.hero a:active {
+    border: 2px solid tomato;
+    transition: 0s;
+}
+
 
 
 /* Volcanoes List stuff */
@@ -241,4 +246,27 @@ input:active, input:focus {
 .volcano__details > ul > li > span {
     font-weight: bold;
     padding-right: 0.4rem;
+}
+
+#population-chart {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+    padding: 4px 15px;
+    font-family: 'Montserrat', sans-serif;
+    transition: ease-in-out 0.25s;
+}
+
+#population-chart:hover {
+    background-color: tomato;
+}
+
+#population-chart:active {
+    border: 2px solid tomato;
+    transition: 0s;
+}
+
+#log-message {
+    font-size: 14px;
 }

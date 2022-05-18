@@ -1,7 +1,7 @@
 import { useEffect, useState  } from "react";
 import { useSearchParams } from "react-router-dom";
 import { GetVolcanoData } from "../api/volcano_api";
-import { Map, Marker } from 'pigeon-maps';
+import { Map, Marker, ZoomControl } from 'pigeon-maps';
 
 // There is an error when after a new user has been registered, there is no token
 // Which then breaks this entire page
@@ -12,6 +12,8 @@ function Volcano() {
 
     const [volcanoData, setData] = useState([]);
     const [isLoaded, setLoaded] = useState(false);
+
+    const [loggedIn] = useState(localStorage.hasOwnProperty('token'));
 
     useEffect(() => {
         GetVolcanoData(volcano_id)
@@ -35,10 +37,16 @@ function Volcano() {
                         <li><span>Summit:</span> {volcanoData.summit}m</li>
                         <li><span>Elevation:</span> {volcanoData.elevation}m</li>
                     </ul>
+                    <h2>Population Density</h2>
+                    { loggedIn ? 
+                    <button id="population-chart">View Chart</button> : 
+                    <p id="log-message">Please Log In to see the population density.</p> }
+                    
                 </div>
                 <div className="volcano__map">
                     {isLoaded ? <CreateMap coordinates={[parseFloat(volcanoData.latitude), parseFloat(volcanoData.longitude)]}/> : <></>}
                 </div>
+                
             </div>
         </div>
     );
@@ -60,10 +68,18 @@ const CreateMap = ({coordinates}) => {
                 setZoom(zoom);
             }}
         >
+            <ZoomControl/>
             <Marker width={50} anchor={coordinates} color={"tomato"}/>
         </Map>
     )
-
 }
+
+const CreateChart = () => (
+    <div>
+
+    </div>
+)
+
+
 
 export default Volcano;

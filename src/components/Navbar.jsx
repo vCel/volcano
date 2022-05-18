@@ -19,7 +19,7 @@ function Navbar() {
                     <Link to = "/volcanoes">Volcano List</Link>
                 </li>
                 { loggedIn ? logout : register }
-                { loggedIn ? <></> : login }
+                { !loggedIn && login }
             
             </ul>
         </nav>

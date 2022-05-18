@@ -4,7 +4,7 @@ const API_URL = "http://sefdb02.qut.edu.au:3001";
 // Gets the User from the API
 export const GetUser = async (title, details, navigate) => {
     const url = `${API_URL}/user/${title.toLowerCase()}`;
-
+    console.log(url);
     await fetch (
         url, {
             method: "POST",
@@ -16,9 +16,9 @@ export const GetUser = async (title, details, navigate) => {
             body: JSON.stringify({email: details.email, password: details.password})
         }
     ).then(res => {if (!res.ok) { throw Error(res.status)} return res.json() })
-    .then(data => {localStorage.setItem('token', data.token); 
-                                        navigate('/'); 
-                                        window.dispatchEvent(new Event('storage'))})
+    .then(data => { title === 'login' ? localStorage.setItem('token', data.token) : 
+                                        GetUser('login', details, navigate) })
+    .then(data => {navigate('/'); window.dispatchEvent(new Event('storage'))} )
     // Error Catching                                    
     .catch(error => { if (error.message === '401') alert("Invalid Email or Password")
                     else if (error.message === '404') alert("404: Broken code?")
