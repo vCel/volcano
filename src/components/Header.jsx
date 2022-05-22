@@ -4,8 +4,7 @@ function Header() {
     return (
         <header>
             <div className="header-menu">
-                    <Nav/>
-                
+                <Nav/>
             </div>
         </header>
         

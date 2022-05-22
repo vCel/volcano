@@ -12,10 +12,11 @@ import Logout from "./pages/Logout";
 import Volcano from "./pages/Volcano";
 
 function App() {
+    document.title = "Volcanoes of the World";
     return (
         <BrowserRouter>
             <div className="background">
-                    <div className="background-image"/>
+                <div className="background-image"/>
             </div>
             <Header/>
 

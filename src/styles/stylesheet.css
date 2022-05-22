@@ -18,7 +18,7 @@ html, body {
 }
 
 .background-image {
-    background: url("../../images/background.jpg") no-repeat center center fixed;
+    background: url("../images/background.jpg") no-repeat center center fixed;
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -166,6 +166,7 @@ nav ul li a:hover {
 .submit-button {
     display: flex;
     justify-content: center;
+    
 }
 
 .form__panel button {
@@ -178,6 +179,7 @@ nav ul li a:hover {
     font-weight: bold;
     transition: ease-in-out 0.25s;
     cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form__panel button:hover {
@@ -270,3 +272,55 @@ input:active, input:focus {
 #log-message {
     font-size: 14px;
 }
+
+
+/* Chart */
+.chart__panel {
+    position: fixed;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.chart__panel > .chart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+}
+
+.chart__panel > .chart * {
+    color: black;
+}
+
+#close-message {
+    position: absolute;
+    opacity: 60%;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+/* Responsive (not really) */
+
+@media screen and (max-width: 650px) {
+    nav ul {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    nav ul li {
+        margin-left: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 768) {
+    .volcanoes__list__container {
+        flex-direction: column;
+    }
+}
+

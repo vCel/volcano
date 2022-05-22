@@ -1,16 +1,15 @@
-import { useEffect, useState  } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { GetVolcanoData } from "../api/volcano_api";
 import { Map, Marker, ZoomControl } from 'pigeon-maps';
-
-// There is an error when after a new user has been registered, there is no token
-// Which then breaks this entire page
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 
 function Volcano() {
     const [searchParams] = useSearchParams();
     const volcano_id = searchParams.get("id");
 
     const [volcanoData, setData] = useState([]);
+    const [showChart, setVisible] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
 
     const [loggedIn] = useState(localStorage.hasOwnProperty('token'));
@@ -34,20 +33,27 @@ function Volcano() {
                         <li><span>Region:</span> {volcanoData.region}</li>
                         <li><span>Subregion:</span> {volcanoData.subregion}</li>
                         <li><span>Last Eruption:</span> {volcanoData.last_eruption}</li>
-                        <li><span>Summit:</span> {volcanoData.summit}m</li>
-                        <li><span>Elevation:</span> {volcanoData.elevation}m</li>
+                        <li><span>Summit:</span> {volcanoData.summit} m</li>
+                        <li><span>Elevation:</span> {volcanoData.elevation} ft</li>
                     </ul>
                     <h2>Population Density</h2>
                     { loggedIn ? 
-                    <button id="population-chart">View Chart</button> : 
+                    <button id="population-chart" onClick={() => setVisible(true)}>View Chart</button> : 
                     <p id="log-message">Please Log In to see the population density.</p> }
                     
                 </div>
                 <div className="volcano__map">
-                    {isLoaded ? <CreateMap coordinates={[parseFloat(volcanoData.latitude), parseFloat(volcanoData.longitude)]}/> : <></>}
+                    {/* Checks if the data is loaded */}
+                    { isLoaded && <CreateMap coordinates={[parseFloat(volcanoData.latitude), parseFloat(volcanoData.longitude)]}/> }
                 </div>
-                
+                    
             </div>
+            { showChart && <CreateChart data={[
+                        {Distance: '5km', Population: volcanoData.population_5km},
+                        {Distance: '10km', Population: volcanoData.population_10km},
+                        {Distance: '30km', Population: volcanoData.population_30km},
+                        {Distance: '100km', Population: volcanoData.population_100km},
+            ]} setVisible={setVisible} /> }
         </div>
     );
 }
@@ -74,11 +80,36 @@ const CreateMap = ({coordinates}) => {
     )
 }
 
-const CreateChart = () => (
-    <div>
-
+const CreateChart = ({data, setVisible}) => (
+    <div className="chart__panel" onClick={() => setVisible(false)}>
+        <div className="chart">
+            <ResponsiveContainer width="100%" height="100%" minHeight={300} minWidth={400}>
+            <BarChart
+                width={500}
+                height={400}
+                data={data}
+                margin={{
+                    top: 10,
+                    right: 30,
+                    left: 20,
+                    bottom: 10,
+                }}
+            >
+                <CartesianGrid strokeDasharray="4 4" />
+                <XAxis dataKey="Distance" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Population" fill="tomato" />
+            </BarChart>
+        </ResponsiveContainer>
+        
+        </div>
+        <div id="close-message">Click anywhere to close</div>
     </div>
 )
+
+
 
 
 

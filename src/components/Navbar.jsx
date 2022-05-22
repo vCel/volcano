@@ -8,7 +8,9 @@ function Navbar() {
     const login = <li id="account"><Link to = "/login">Login</Link></li>
     const logout = <li id="logout"><Link to = "/logout">Logout</Link></li>
 
+    // Check if token has been added or removed
     window.addEventListener('storage', () => setLoggedIn(localStorage.hasOwnProperty('token')));
+    
     return (
         <nav className="navbar">
             <ul>
