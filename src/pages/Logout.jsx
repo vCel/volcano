@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 
+// Page to log the user out
 function Logout() {
     const navigate = useNavigate();
 
+    // Try to remove the token
     try {
         localStorage.removeItem("token");
     }
@@ -13,7 +15,7 @@ function Logout() {
 
     useEffect(() => {
         navigate('/');
-        window.dispatchEvent(new Event('storage'))
+        window.dispatchEvent(new Event('storage')) // New event to inform that the user has been logged out
     }, [navigate])
 
     

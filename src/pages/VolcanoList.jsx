@@ -28,10 +28,13 @@ function TableList() {
         {value: 100, label: "100km"}
     ];
 
+    // Default state of the search
+    const defaultSearch= {country: 'Japan', range: 0};
+
     const countryChange = inputVal => {setSearch({country: inputVal.value, range: search.range})};
     const rangeChange = inputVal => {setSearch({country: search.country, range: inputVal.value})};
 
-    const [search, setSearch] = useState({country: "japan", range: 0});
+    const [search, setSearch] = useState({country: defaultSearch.country.toLowerCase(), range: defaultSearch.range});
     return (
         <div className="volcanoes__list">
             <h1 className="volcanoes__list__title">Volcanoes</h1>
@@ -43,7 +46,7 @@ function TableList() {
                         Country
                         <Select 
                         options={country_filter} 
-                        defaultValue={{value: "japan", label: "Japan"}} 
+                        defaultValue={{value: defaultSearch.country.toLowerCase(), label: defaultSearch.country}} 
                         onChange={countryChange}/>
                     </div>
                     <div className="range__sort">
@@ -78,7 +81,7 @@ const Table = ({search}) => {
     useEffect(() => {
         GetVolcanoes(search.country, search.range)
         .then(result => {
-            setRowData(result);
+            setRowData(result); // Sets the row data of the table
         }).catch(error => console.log(error))
     }, [search.country, search.range]);
 

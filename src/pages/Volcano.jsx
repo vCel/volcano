@@ -12,13 +12,13 @@ function Volcano() {
     const [showChart, setVisible] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
 
-    const [loggedIn] = useState(localStorage.hasOwnProperty('token'));
+    const [loggedIn] = useState(localStorage.hasOwnProperty('token')); // Get token
 
     useEffect(() => {
         GetVolcanoData(volcano_id)
         .then(data => {
-            setData(data);
-            if (!isNaN(volcanoData.latitude)) setLoaded(true);
+            setData(data); // Set the data obtained
+            if (!isNaN(volcanoData.latitude)) setLoaded(true); // Check if the data is loaded, then set the state to true.
         }).catch(error => console.log(error))
     }, [volcano_id, volcanoData.latitude]);
 
@@ -37,17 +37,19 @@ function Volcano() {
                         <li><span>Elevation:</span> {volcanoData.elevation} ft</li>
                     </ul>
                     <h2>Population Density</h2>
+                    {/* Shows the population density button when user is logged in */}
                     { loggedIn ? 
                     <button id="population-chart" onClick={() => setVisible(true)}>View Chart</button> : 
                     <p id="log-message">Please Log In to see the population density.</p> }
                     
                 </div>
                 <div className="volcano__map">
-                    {/* Checks if the data is loaded */}
+                    {/* Checks if the data is loaded, then load the map if true */}
                     { isLoaded && <CreateMap coordinates={[parseFloat(volcanoData.latitude), parseFloat(volcanoData.longitude)]}/> }
                 </div>
                     
             </div>
+            {/* Show the chart when the button is clicked */}
             { showChart && <CreateChart data={[
                         {Distance: '5km', Population: volcanoData.population_5km},
                         {Distance: '10km', Population: volcanoData.population_10km},
@@ -58,6 +60,7 @@ function Volcano() {
     );
 }
 
+// Function to create a map based on the coordinates
 const CreateMap = ({coordinates}) => {
     const [centre, setCentre] = useState(coordinates);
     const [zoom, setZoom] = useState(9);
@@ -80,6 +83,7 @@ const CreateMap = ({coordinates}) => {
     )
 }
 
+// Function to create a chart with the API data
 const CreateChart = ({data, setVisible}) => (
     <div className="chart__panel" onClick={() => setVisible(false)}>
         <div className="chart">

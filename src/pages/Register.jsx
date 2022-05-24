@@ -1,5 +1,6 @@
 import Panel from "../components/UserForm"
 
+// Register page
 function Register() {
     return (
     <div className="register__panel">

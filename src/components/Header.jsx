@@ -1,5 +1,6 @@
 import Nav from "./Navbar";
 
+// Header function
 function Header() {
     return (
         <header>
@@ -7,7 +8,6 @@ function Header() {
                 <Nav/>
             </div>
         </header>
-        
     );
 }
 

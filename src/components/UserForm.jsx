@@ -8,6 +8,7 @@ const Panel = ({title}) => {
 
     const initialState = { email: '', password: ''};
 
+    // Use the 'Yup' module to validate the form
     const formValidate = Yup.object().shape({
         email: Yup.string()
         .email('Invalid email')
@@ -19,6 +20,7 @@ const Panel = ({title}) => {
     return (
         <div className="form__panel">
             <h1 className="form__title">{title}</h1>
+            {/* Create a new Form using the Formik module */}
             <Formik 
                 initialValues={{...initialState}}
                 validationSchema={formValidate}
@@ -36,7 +38,7 @@ const Panel = ({title}) => {
                     <div className="password__field">
                         <label htmlFor="password">
                             Password
-                            <span id="error"><ErrorMessage name="password"/></span>
+                            <span id="error"><ErrorMessage name="password"/></span> 
                         </label>
                         <Field name="password" type="password"/>
                     </div>

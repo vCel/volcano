@@ -8,7 +8,7 @@ function Home() {
     );
 }
 
-
+// 'Hero' content on the homepage
 const Hero = () => (
     <section className="hero">
         <div className="hero__content">

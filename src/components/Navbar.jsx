@@ -20,6 +20,7 @@ function Navbar() {
                 <li>
                     <Link to = "/volcanoes">Volcano List</Link>
                 </li>
+                {/* Checks if the user is logged in then shows the buttons accordingly */}
                 { loggedIn ? logout : register }
                 { !loggedIn && login }
             
